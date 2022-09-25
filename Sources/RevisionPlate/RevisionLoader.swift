@@ -1,14 +1,9 @@
 import Foundation
 
 public struct RevisionLoader {
-    public init(bundle: Bundle = .main) {
-        self.bundle = bundle
-    }
+    private static let decoder: PropertyListDecoder = .init()
     
-    private let bundle: Bundle
-    private let decoder: PropertyListDecoder = .init()
-    
-    public func load() -> Revision? {
+    public static func load(bundle: Bundle = .main) -> Revision? {
         guard let url = bundle.url(forResource: "revision-plate", withExtension: "plist"), let data = try? Data(contentsOf: url) else {
             return nil
         }
