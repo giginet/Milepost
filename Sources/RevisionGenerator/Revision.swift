@@ -1,8 +1,8 @@
 import Foundation
 
-struct Revision {
-    struct Commit {
-        struct User {
+struct Revision: Encodable {
+    struct Commit: Encodable {
+        struct User: Encodable {
             var name: String
             var email: String
         }

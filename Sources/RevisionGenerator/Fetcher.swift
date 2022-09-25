@@ -1,11 +1,13 @@
 import Foundation
 
 struct Fetcher {
-    init(gitExecutablePath: URL) {
+    init(repositoryPath: URL, gitExecutablePath: URL) {
+        self.repositoryPath = repositoryPath
         self.gitExecutablePath = gitExecutablePath
     }
-    
+    private let repositoryPath: URL
     private let gitExecutablePath: URL
+    private let fileManager: FileManager = .default
     
     enum Error: Swift.Error {
         case executableNotFound
@@ -15,7 +17,7 @@ struct Fetcher {
     }
     
     func parse() throws -> Revision {
-        guard FileManager.default.fileExists(atPath: gitExecutablePath.path) else {
+        guard fileManager.fileExists(atPath: gitExecutablePath.path) else {
             throw Error.executableNotFound
         }
         
@@ -93,6 +95,7 @@ struct Fetcher {
     }
     
     private func runGit(_ subCommand: String, _ options: String...) throws -> Data {
+        fileManager.changeCurrentDirectoryPath(repositoryPath.path)
         let standardOutput = Pipe()
         let standardError = Pipe()
         
