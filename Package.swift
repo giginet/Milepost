@@ -5,7 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "Milepost",
-    platforms: [.macOS(.v11),],
+    platforms: [
+        .iOS(.v11),
+        .macOS(.v11),
+        .tvOS(.v11),
+        .watchOS(.v4),
+    ],
     products: [
         .library(
             name: "Milepost",
