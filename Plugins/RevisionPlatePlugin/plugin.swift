@@ -1,6 +1,7 @@
 import Foundation
 import PackagePlugin
 
+@main
 struct RevisionGenerator: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
         let executablePath = try context.tool(named: "revision-generator").path
@@ -11,7 +12,7 @@ struct RevisionGenerator: BuildToolPlugin {
                 arguments: [
                     target.directory.string,
                 ]
-            )
+            ),
         ]
     }
 }

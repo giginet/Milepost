@@ -10,9 +10,16 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "RevisionPlateCore",
-            targets: ["RevisionPlateCore"]),
-        .executable(name: "revision-generator",
-                    targets: ["RevisionGenerator"]),
+            targets: ["RevisionPlateCore"]
+        ),
+        .executable(
+            name: "revision-generator",
+            targets: ["RevisionGenerator"]
+        ),
+        .plugin(
+            name: "RevisionPlatePlugin",
+            targets: ["RevisionPlatePlugin"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -27,7 +34,8 @@ let package = Package(
         ),
         .plugin(
             name: "RevisionPlatePlugin",
-            capability: .buildTool()
+            capability: .buildTool(),
+            dependencies: ["RevisionGenerator"]
         ),
         .executableTarget(
             name: "RevisionGenerator",
