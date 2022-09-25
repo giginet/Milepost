@@ -1,6 +1,5 @@
 import Foundation
 import PackagePlugin
-import XcodeProjectPlugin
 
 @main
 struct PrepareMilepost: BuildToolPlugin {
@@ -26,6 +25,10 @@ struct PrepareMilepost: BuildToolPlugin {
     }
 }
 
+#if canImport(XcodeProjectPlugin)
+
+import XcodeProjectPlugin
+
 extension PrepareMilepost: XcodeBuildToolPlugin {
     func createBuildCommands(context: XcodeProjectPlugin.XcodePluginContext, target: XcodeProjectPlugin.XcodeTarget) throws -> [PackagePlugin.Command] {
         let executablePath = try context.tool(named: "bundle-generator").path
@@ -49,3 +52,5 @@ extension PrepareMilepost: XcodeBuildToolPlugin {
         
     }
 }
+
+#endif
