@@ -13,12 +13,12 @@ let package = Package(
             targets: ["RevisionPlateCore"]
         ),
         .executable(
-            name: "revision-generator",
-            targets: ["RevisionGenerator"]
+            name: "revision-info-generator",
+            targets: ["RevisionInfoGenerator"]
         ),
         .plugin(
-            name: "RevisionPlatePlugin",
-            targets: ["RevisionPlatePlugin"]
+            name: "PrepareRevisionInfo",
+            targets: ["PrepareRevisionInfo"]
         ),
     ],
     dependencies: [
@@ -33,12 +33,12 @@ let package = Package(
             name: "RevisionPlateCore"
         ),
         .plugin(
-            name: "RevisionPlatePlugin",
+            name: "PrepareRevisionInfo",
             capability: .buildTool(),
-            dependencies: ["RevisionGenerator"]
+            dependencies: ["RevisionInfoGenerator"]
         ),
         .executableTarget(
-            name: "RevisionGenerator",
+            name: "RevisionInfoGenerator",
             dependencies: [
                 .target(name: "RevisionPlateCore"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
