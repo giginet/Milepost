@@ -11,14 +11,14 @@ public struct Revision: Codable {
                     committer: Revision.Commit.User,
                     subject: String? = nil,
                     authorDate: Date,
-                    commiteDate: Date,
+                    commitDate: Date,
                     shortHash: String,
                     hash: String) {
             self.author = author
             self.committer = committer
             self.subject = subject
             self.authorDate = authorDate
-            self.commiteDate = commiteDate
+            self.commitDate = commitDate
             self.shortHash = shortHash
             self.hash = hash
         }
@@ -36,7 +36,7 @@ public struct Revision: Codable {
         public var committer: User
         public var subject: String?
         public var authorDate: Date
-        public var commiteDate: Date
+        public var commitDate: Date
         public var shortHash: String
         public var hash: String
     }

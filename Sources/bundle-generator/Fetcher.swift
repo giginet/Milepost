@@ -75,7 +75,7 @@ struct Fetcher {
                      committer: .init(name: commitName, email: commitEmail),
                      subject: subject,
                      authorDate: authorDate,
-                     commiteDate: commitDate,
+                     commitDate: commitDate,
                      shortHash: shortHash,
                      hash: hash)
     }
