@@ -39,8 +39,7 @@ extension PrepareMilepost: XcodeBuildToolPlugin {
                 executable: executablePath,
                 arguments: [
                     context.xcodeProject.directory,
-                    "--output-path",
-                    outputPath.string
+                    outputPath.string,
                 ],
                 outputFiles: [
                     outputPath,
