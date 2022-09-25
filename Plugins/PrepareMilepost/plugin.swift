@@ -3,16 +3,16 @@ import PackagePlugin
 import XcodeProjectPlugin
 
 @main
-struct PrepareRevisionInfo: BuildToolPlugin {
+struct PrepareMilepost: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-        let executablePath = try context.tool(named: "revision-info-generator").path
+        let executablePath = try context.tool(named: "bundle-generator").path
         
         let outputFilesDir = context.pluginWorkDirectory.appending(target.name, "Resources")
         let outputPath = outputFilesDir.appending(subpath: "revision-plate.plist")
         
         return [
             .buildCommand(
-                displayName: "Prepare Milepost info",
+                displayName: "Prepare Milepost",
                 executable: executablePath,
                 arguments: [
                     target.directory,
@@ -27,16 +27,16 @@ struct PrepareRevisionInfo: BuildToolPlugin {
     }
 }
 
-extension PrepareRevisionInfo: XcodeBuildToolPlugin {
+extension PrepareMilepost: XcodeBuildToolPlugin {
     func createBuildCommands(context: XcodeProjectPlugin.XcodePluginContext, target: XcodeProjectPlugin.XcodeTarget) throws -> [PackagePlugin.Command] {
-        let executablePath = try context.tool(named: "revision-info-generator").path
+        let executablePath = try context.tool(named: "bundle-generator").path
         
         let outputFilesDir = context.pluginWorkDirectory
         let outputPath = outputFilesDir.appending(subpath: "revision-plate.plist")
         
         return [
             .buildCommand(
-                displayName: "Prepare Milepost info",
+                displayName: "Prepare Milepost",
                 executable: executablePath,
                 arguments: [
                     context.xcodeProject.directory,

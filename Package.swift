@@ -7,18 +7,13 @@ let package = Package(
     name: "Milepost",
     platforms: [.macOS(.v11),],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Milepost",
             targets: ["Milepost"]
         ),
-        .executable(
-            name: "revision-info-generator",
-            targets: ["revision-info-generator"]
-        ),
         .plugin(
-            name: "PrepareRevisionInfo",
-            targets: ["PrepareRevisionInfo"]
+            name: "PrepareMilepost",
+            targets: ["PrepareMilepost"]
         ),
     ],
     dependencies: [
@@ -33,12 +28,12 @@ let package = Package(
             name: "Milepost"
         ),
         .plugin(
-            name: "PrepareRevisionInfo",
+            name: "PrepareMilepost",
             capability: .buildTool(),
-            dependencies: ["revision-info-generator"]
+            dependencies: ["bundle-generator"]
         ),
         .executableTarget(
-            name: "revision-info-generator",
+            name: "bundle-generator",
             dependencies: [
                 .target(name: "Milepost"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
