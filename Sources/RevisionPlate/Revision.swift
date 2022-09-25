@@ -43,3 +43,19 @@ public struct Revision: Codable {
     public var lastCommit: Commit
     public var branch: String?
 }
+
+extension Revision {
+    public var hash: String {
+        lastCommit.hash
+    }
+    
+    public var shortHash: String {
+        lastCommit.shortHash
+    }
+}
+
+extension Revision.Commit.User: CustomStringConvertible {
+    public var description: String {
+        return "\(name) <\(email)>"
+    }
+}
