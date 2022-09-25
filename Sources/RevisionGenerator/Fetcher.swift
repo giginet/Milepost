@@ -1,4 +1,5 @@
 import Foundation
+import RevisionPlateCore
 
 struct Fetcher {
     init(repositoryPath: URL, gitExecutablePath: URL) {

@@ -1,4 +1,5 @@
 import Foundation
+import RevisionPlateCore
 
 struct PlistGenerator {
     init(outputPath: URL) {
