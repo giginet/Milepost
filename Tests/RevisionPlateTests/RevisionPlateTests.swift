@@ -1,11 +1,11 @@
 import XCTest
-@testable import RevisionPlate
+@testable import Milepost
 
-final class RevisionPlateTests: XCTestCase {
+final class MilepostTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(RevisionPlate().text, "Hello, World!")
+        XCTAssertEqual(Milepost().text, "Hello, World!")
     }
 }

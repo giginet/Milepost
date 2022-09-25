@@ -12,7 +12,7 @@ struct PrepareRevisionInfo: BuildToolPlugin {
         
         return [
             .buildCommand(
-                displayName: "Prepare RevisionPlate info",
+                displayName: "Prepare Milepost info",
                 executable: executablePath,
                 arguments: [
                     target.directory,
@@ -36,7 +36,7 @@ extension PrepareRevisionInfo: XcodeBuildToolPlugin {
         
         return [
             .buildCommand(
-                displayName: "Prepare RevisionPlate info",
+                displayName: "Prepare Milepost info",
                 executable: executablePath,
                 arguments: [
                     context.xcodeProject.directory,

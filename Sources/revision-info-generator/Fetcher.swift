@@ -1,5 +1,5 @@
 import Foundation
-import RevisionPlate
+import Milepost
 
 struct Fetcher {
     init(repositoryPath: URL, gitExecutablePath: URL) {

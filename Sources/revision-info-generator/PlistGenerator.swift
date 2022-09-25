@@ -1,5 +1,5 @@
 import Foundation
-import RevisionPlate
+import Milepost
 
 struct PlistGenerator {
     init(outputPath: URL) {
