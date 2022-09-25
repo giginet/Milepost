@@ -29,10 +29,7 @@ struct Fetcher {
     }
     
     private func parseBranchName() -> String? {
-        guard let data = try? runGit("rev-parse", "--abbrev-ref", "HEAD") else {
-            return nil
-        }
-        return String(data: data, encoding: .utf8)
+        try? runGit("rev-parse", "--abbrev-ref", "HEAD")
     }
     
     private func parseLastCommit() throws -> Revision.Commit {
@@ -47,11 +44,10 @@ struct Fetcher {
             "%ct", // Commit timestamp
         ]
             .joined(separator: "%n")
-        guard let data = try? runGit("show", "-s", "--format=\(format)"),
-                let output = String(data: data, encoding: .utf8) else {
+        guard let outputString = try? runGit("show", "-s", "--format=\(format)") else {
             throw Error.unexpectedOutput
         }
-        let bits = output.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "\n").map(String.init)
+        let bits = outputString.split(separator: "\n").map(String.init)
         
         guard bits.count == 8 else {
             throw Error.unexpectedOutput
@@ -81,11 +77,7 @@ struct Fetcher {
     }
     
     private func parseCommitSubject() -> String? {
-        guard let messageData = try? runGit("show", "-s", "--format=%s"),
-                let messages = String(data: messageData, encoding: .utf8) else {
-            return nil
-        }
-        return messages.trimmingCharacters(in: .whitespacesAndNewlines)
+        try? runGit("show", "-s", "--format=%s")
     }
     
     private func gitProcess(for arguments: [String]) -> Process {
@@ -95,7 +87,7 @@ struct Fetcher {
         return process
     }
     
-    private func runGit(_ subCommand: String, _ options: String...) throws -> Data {
+    private func runGit(_ subCommand: String, _ options: String...) throws -> String {
         fileManager.changeCurrentDirectoryPath(repositoryPath.path)
         let standardOutput = Pipe()
         let standardError = Pipe()
@@ -121,6 +113,9 @@ struct Fetcher {
         
         let outputData = try standardOutput.fileHandleForReading.readToEnd()
         guard let outputData else { throw Error.unexpectedOutput }
-        return outputData
+        guard let string = String(data: outputData, encoding: .utf8) else {
+            throw Error.unexpectedOutput
+        }
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

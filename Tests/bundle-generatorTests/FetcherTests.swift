@@ -14,7 +14,8 @@ final class FetcherTests: XCTestCase {
             gitExecutablePath: defaultGitPath
         )
         
-        let revision = try fetcher.parse()
+        let revision = try XCTUnwrap(fetcher.parse())
         XCTAssertNotNil(revision.lastCommit.subject)
+        XCTAssertFalse(revision.branch!.hasSuffix("\n"))
     }
 }
