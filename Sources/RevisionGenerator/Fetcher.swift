@@ -28,7 +28,7 @@ struct Fetcher {
     }
     
     private func parseBranchName() -> String? {
-        guard let data = try? runGit("rev-parse", "-abbrev-ref", "HEAD") else {
+        guard let data = try? runGit("rev-parse", "--abbrev-ref", "HEAD") else {
             return nil
         }
         return String(data: data, encoding: .utf8)
@@ -71,7 +71,7 @@ struct Fetcher {
         let subject = parseCommitSubject()
         
         return .init(author: .init(name: authorName, email: authorEmail),
-                     commit: .init(name: authorName, email: authorEmail),
+                     commit: .init(name: commitName, email: commitEmail),
                      subject: subject,
                      authorDate: authorDate,
                      commiteDate: commitDate,

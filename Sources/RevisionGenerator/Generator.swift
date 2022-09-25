@@ -1,6 +1,7 @@
 import Foundation
 import ArgumentParser
 
+@main
 struct GeneratorCommand: ParsableCommand {
     @Argument
     var targetRootPath: String
@@ -18,7 +19,7 @@ struct GeneratorCommand: ParsableCommand {
     func run() throws {
         let repositoryPath: URL = .init(fileURLWithPath: targetRootPath)
         let gitExecutable: URL = .init(fileURLWithPath: gitExecutablePath)
-        do {
+//        do {
             let fetcher = Fetcher(repositoryPath: repositoryPath, gitExecutablePath: gitExecutable)
             let revision = try fetcher.parse()
             
@@ -26,9 +27,9 @@ struct GeneratorCommand: ParsableCommand {
                                  relativeTo: URL(fileURLWithPath: targetRootPath))
             let generator = PlistGenerator(outputPath: outputPath)
             try generator.generate(revision)
-        } catch {
-            Self.exit(withError: error)
-        }
+//        } catch {
+//            Self.exit(withError: error)
+//        }
 
     }
 }

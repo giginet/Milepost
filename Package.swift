@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "RevisionPlate",
             targets: ["RevisionPlate"]),
-        .executable(name: "RevisionGenerator",
+        .executable(name: "revision-generator",
                     targets: ["RevisionGenerator"]),
     ],
     dependencies: [
