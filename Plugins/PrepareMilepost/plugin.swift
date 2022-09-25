@@ -16,8 +16,7 @@ struct PrepareMilepost: BuildToolPlugin {
                 executable: executablePath,
                 arguments: [
                     target.directory,
-                    "--output-path",
-                    outputPath.string
+                    outputPath.string,
                 ],
                 outputFiles: [
                     outputPath,

@@ -21,10 +21,7 @@ let package = Package(
             targets: ["PrepareMilepost"]
         ),
     ],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser.git",
-                 .upToNextMinor(from: "1.1.4")),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "Milepost"
@@ -38,7 +35,6 @@ let package = Package(
             name: "bundle-generator",
             dependencies: [
                 .target(name: "Milepost"),
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
         .testTarget(
