@@ -1,5 +1,11 @@
 # Milepost
 
+[![Build Status](https://img.shields.io/github/workflow/status/giginet/Milepost/Milepost?style=flat-square)](https://github.com/giginet/Milepost/actions?query=workflow%3AMilepost)
+[![Language](https://img.shields.io/static/v1.svg?label=language&message=Swift%205.6&color=FA7343&logo=swift&style=flat-square)](https://swift.org)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-4BC51D.svg?style=flat-square)](https://swift.org/package-manager/) 
+[![Platform](https://img.shields.io/static/v1.svg?label=platform&message=iOS|macOS|watchOS|tvOS&color=grey&logo=apple&style=flat-square)](https://github.com/giginet/Milepost/blob/main/Package.swift)
+[![License](https://img.shields.io/cocoapods/l/Milepost.svg?style=flat-square)](https://github.com/giginet/Milepost/blob/main/LICENSE.md)
+
 A Simple SwiftPM plugin to show Git commit on your apps
 
 <img src="./Documentation/swiftui.png" height="500px">
