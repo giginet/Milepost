@@ -2,6 +2,8 @@
 
 A Simple SwiftPM plugin to show Git commit on your apps
 
+<img src="./Documentation/swiftui.png" height="500px">
+
 ## Summary
 
 **Milepost** is a simple library to fetch Git commit info.
@@ -52,8 +54,6 @@ revision.lastCommit.subject
 revision.lastCommit.authorDate
 revision.lastCommit.commitDate
 ```
-
-<img src="./Documentation/swiftui.png" height="500px">
 
 You can easily build a setting page like followings:
 
