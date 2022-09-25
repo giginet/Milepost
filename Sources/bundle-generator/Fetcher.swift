@@ -72,7 +72,7 @@ struct Fetcher {
         let subject = parseCommitSubject()
         
         return .init(author: .init(name: authorName, email: authorEmail),
-                     commit: .init(name: commitName, email: commitEmail),
+                     committer: .init(name: commitName, email: commitEmail),
                      subject: subject,
                      authorDate: authorDate,
                      commiteDate: commitDate,

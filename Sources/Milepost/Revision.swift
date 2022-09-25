@@ -8,14 +8,14 @@ public struct Revision: Codable {
     
     public struct Commit: Codable {
         public init(author: Revision.Commit.User,
-                    commit: Revision.Commit.User,
+                    committer: Revision.Commit.User,
                     subject: String? = nil,
                     authorDate: Date,
                     commiteDate: Date,
                     shortHash: String,
                     hash: String) {
             self.author = author
-            self.commit = commit
+            self.committer = committer
             self.subject = subject
             self.authorDate = authorDate
             self.commiteDate = commiteDate
@@ -33,7 +33,7 @@ public struct Revision: Codable {
             public var email: String
         }
         public var author: User
-        public var commit: User
+        public var committer: User
         public var subject: String?
         public var authorDate: Date
         public var commiteDate: Date
