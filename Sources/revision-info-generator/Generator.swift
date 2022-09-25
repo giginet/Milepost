@@ -10,26 +10,23 @@ struct GeneratorCommand: ParsableCommand {
     var gitExecutablePath: String = "/usr/bin/git"
     
     @Option(
-        name: [.short, .customLong("output-path")],
-        help: "Output plist file name relative from the target root"
+        name: [.short, .customLong("output-path")]
     )
-    var relativeOutputPath: String = "./revision-plate.plist"
+    var outputPath: String
     
     
     func run() throws {
         let repositoryPath: URL = .init(fileURLWithPath: targetRootPath)
         let gitExecutable: URL = .init(fileURLWithPath: gitExecutablePath)
-//        do {
+        do {
             let fetcher = Fetcher(repositoryPath: repositoryPath, gitExecutablePath: gitExecutable)
             let revision = try fetcher.parse()
             
-            let outputPath = URL(fileURLWithPath: relativeOutputPath,
-                                 relativeTo: URL(fileURLWithPath: targetRootPath))
+            let outputPath = URL(fileURLWithPath: outputPath)
             let generator = PlistGenerator(outputPath: outputPath)
             try generator.generate(revision)
-//        } catch {
-//            Self.exit(withError: error)
-//        }
-
+        } catch {
+            Self.exit(withError: error)
+        }
     }
 }

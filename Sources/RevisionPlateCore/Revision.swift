@@ -1,12 +1,12 @@
 import Foundation
 
-public struct Revision: Encodable {
+public struct Revision: Codable {
     public init(lastCommit: Revision.Commit, branch: String? = nil) {
         self.lastCommit = lastCommit
         self.branch = branch
     }
     
-    public struct Commit: Encodable {
+    public struct Commit: Codable {
         public init(author: Revision.Commit.User,
                     commit: Revision.Commit.User,
                     subject: String? = nil,
@@ -23,7 +23,7 @@ public struct Revision: Encodable {
             self.hash = hash
         }
         
-        public struct User: Encodable {
+        public struct User: Codable {
             public init(name: String, email: String) {
                 self.name = name
                 self.email = email

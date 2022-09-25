@@ -14,7 +14,7 @@ let package = Package(
         ),
         .executable(
             name: "revision-info-generator",
-            targets: ["RevisionInfoGenerator"]
+            targets: ["revision-info-generator"]
         ),
         .plugin(
             name: "PrepareRevisionInfo",
@@ -35,10 +35,10 @@ let package = Package(
         .plugin(
             name: "PrepareRevisionInfo",
             capability: .buildTool(),
-            dependencies: ["RevisionInfoGenerator"]
+            dependencies: ["revision-info-generator"]
         ),
         .executableTarget(
-            name: "RevisionInfoGenerator",
+            name: "revision-info-generator",
             dependencies: [
                 .target(name: "RevisionPlateCore"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
