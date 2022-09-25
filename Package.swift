@@ -25,6 +25,10 @@ let package = Package(
         .target(
             name: "RevisionPlateCore"
         ),
+        .plugin(
+            name: "RevisionPlatePlugin",
+            capability: .buildTool()
+        ),
         .executableTarget(
             name: "RevisionGenerator",
             dependencies: [
