@@ -5,11 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "RevisionPlate",
+    platforms: [.macOS(.v11),],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "RevisionPlate",
             targets: ["RevisionPlate"]),
+        .executable(name: "RevisionGenerator",
+                    targets: ["RevisionGenerator"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,5 +27,8 @@ let package = Package(
         .testTarget(
             name: "RevisionPlateTests",
             dependencies: ["RevisionPlate"]),
+//        .plugin(name: "RevisionGeneratorPlugin",
+//                capability: .buildTool()),
+        .executableTarget(name: "RevisionGenerator"),
     ]
 )
