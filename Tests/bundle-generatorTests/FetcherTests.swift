@@ -1,7 +1,7 @@
 import XCTest
 @testable import bundle_generator
 
-private let repositoryRoot = URL(fileURLWithPath: #file)
+private let repositoryRoot = URL(fileURLWithPath: #filePath)
     .deletingLastPathComponent()
     .deletingLastPathComponent()
     .deletingLastPathComponent()
