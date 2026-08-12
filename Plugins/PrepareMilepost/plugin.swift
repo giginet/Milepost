@@ -4,21 +4,23 @@ import PackagePlugin
 @main
 struct PrepareMilepost: BuildToolPlugin {
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-        let executablePath = try context.tool(named: "bundle-generator").path
-        
-        let outputFilesDir = context.pluginWorkDirectory.appending(target.name, "Resources")
-        let outputPath = outputFilesDir.appending(subpath: "revision-plate.plist")
-        
+        let executableURL = try context.tool(named: "bundle-generator").url
+
+        let outputFilesDir = context.pluginWorkDirectoryURL
+            .appending(path: target.name)
+            .appending(path: "Resources")
+        let outputURL = outputFilesDir.appending(path: "revision-plate.plist")
+
         return [
             .buildCommand(
                 displayName: "Prepare Milepost",
-                executable: executablePath,
+                executable: executableURL,
                 arguments: [
-                    target.directory,
-                    outputPath.string,
+                    context.package.directoryURL.path(percentEncoded: false),
+                    outputURL.path(percentEncoded: false),
                 ],
                 outputFiles: [
-                    outputPath,
+                    outputURL,
                 ]
             ),
         ]
@@ -31,25 +33,25 @@ import XcodeProjectPlugin
 
 extension PrepareMilepost: XcodeBuildToolPlugin {
     func createBuildCommands(context: XcodeProjectPlugin.XcodePluginContext, target: XcodeProjectPlugin.XcodeTarget) throws -> [PackagePlugin.Command] {
-        let executablePath = try context.tool(named: "bundle-generator").path
-        
-        let outputFilesDir = context.pluginWorkDirectory
-        let outputPath = outputFilesDir.appending(subpath: "revision-plate.plist")
-        
+        let executableURL = try context.tool(named: "bundle-generator").url
+
+        let outputFilesDir = context.pluginWorkDirectoryURL
+        let outputURL = outputFilesDir.appending(path: "revision-plate.plist")
+
         return [
             .buildCommand(
                 displayName: "Prepare Milepost",
-                executable: executablePath,
+                executable: executableURL,
                 arguments: [
-                    context.xcodeProject.directory,
-                    outputPath.string,
+                    context.xcodeProject.directoryURL.path(percentEncoded: false),
+                    outputURL.path(percentEncoded: false),
                 ],
                 outputFiles: [
-                    outputPath,
+                    outputURL,
                 ]
             ),
         ]
-        
+
     }
 }
 
